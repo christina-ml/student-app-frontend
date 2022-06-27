@@ -1,10 +1,9 @@
-import './App.css';
 import StudentList from './components/studentList/StudentList';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-      Hello World
       <StudentList />
     </div>
   );

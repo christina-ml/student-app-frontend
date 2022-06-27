@@ -8,20 +8,21 @@ const StudentList = () => {
     const [students, setStudents] = useState([]);
 
     // functions
-
     
-    // const url = 'https://student-app-backend-cl.herokuapp.com/students';
-    const url = 'https://student-app-backend-june.herokuapp.com/students';
     useEffect(() => {
+        // const url = 'https://student-app-backend-june.herokuapp.com/students'; // => Jordan's backend url
+        const url = 'https://student-app-backend-cl.herokuapp.com/students';
+
         // reach out to the backend
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            setStudents(data.students);
+        })
         // get our students
         // update our students hook with the new data
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                setStudents(data.students);
-            })
+        
     }, []); // empty array means run on mount
 
     // return or JSX
@@ -29,9 +30,7 @@ const StudentList = () => {
         <div className="studentList">
             {students.map((student) => {
                 return (
-                    <div>
-                        <StudentCard student={student} />
-                    </div>
+                    <StudentCard student={student} />
                 )
             })}
         </div>

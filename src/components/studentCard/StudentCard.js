@@ -2,7 +2,6 @@ import React from "react";
 import './StudentCard.scss';
 
 const StudentCard = ({student}) => {
-    console.log("here:", student)
 
     const {pic, firstName, lastName, email, company, skill, grades} = student;
 
@@ -10,13 +9,13 @@ const StudentCard = ({student}) => {
     const calculateAverage = (grades) => {
         // let sum = 0;
 
-        // grades.map((grade) => {
+        // grades.map(grade => {
         //     sum += Number(grade);
-        // })
+        // });
         // return sum / grades.length;
 
         // ---- OR you can do this: -----
-        let sum = grades.reduce((sum, val) => sum + Number(val), 0);
+        const sum = grades.reduce((sum, val) => sum + Number(val), 0);
         return sum / grades.length;
     }
 
@@ -38,7 +37,7 @@ const StudentCard = ({student}) => {
                 Skill: {skill}
             </div>
             <div>
-                Average: {calculateAverage(grades)}
+                Average: {calculateAverage(grades)}%
             </div>
         </div>
     )

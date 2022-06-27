@@ -1,3 +1,9 @@
 .studentCard {
-    background-color: #F0F0F0;
+    > * {
+        margin-bottom: 8 px;
+    }
+
+    &__name {
+        font-weight: 600;
+    }
 }
