@@ -6,6 +6,7 @@ import './StudentList.scss';
 const StudentList = () => {
     // hooks
     const [students, setStudents] = useState([]);
+    const [studentList, setStudentList] = useState([]);
 
     // functions
     
@@ -28,6 +29,7 @@ const StudentList = () => {
     // return or JSX
     return (
         <div className="studentList">
+            <input className="studentList__search" placeholder="Search by name"/>
             {students.map((student) => {
                 return (
                     <StudentCard student={student} />
