@@ -4,20 +4,18 @@ import './SearchBar.scss';
 
 function SearchBar({searchTerm, setSearchTerm}) {
 
-    const updateSearchTerm = (e) => {
-        console.log(e.target.value);
-        setSearchTerm(e.target.value)
-    }
+  const updateSearchTerm = (e) => {
+    setSearchTerm(e.target.value);
+  }
 
-
-  return (
-    <input 
-    className="studentList__search" 
-    placeholder="Search by name"
-    value={searchTerm}
-    onChange={updateSearchTerm}
-    />
-  )
+    return (
+      <input 
+          className="searchBar" 
+          placeholder="Search by name"
+          value={searchTerm} 
+          onChange={updateSearchTerm}
+      />
+  );
 }
 
 export default SearchBar;
