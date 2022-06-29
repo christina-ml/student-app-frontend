@@ -1,7 +1,6 @@
 @import '../../designUtils/colors';
 
-.studentList {
-    &__search {
+.searchBar {
         width: 93%;
         height: 30px;
         border: none;
@@ -13,5 +12,4 @@
             outline: none;
             border-bottom: 2px solid $darker-gray;
         }
-    }
 }
