@@ -24,7 +24,7 @@ const StudentCard = ({student}) => {
             <div>
                 <img src={pic} />
             </div>
-            <div>
+            <div className="studentCard__name">
                 {`${firstName} ${lastName}`}
             </div>
             <div>
