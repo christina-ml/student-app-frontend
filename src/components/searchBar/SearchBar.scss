@@ -1,0 +1,15 @@
+.searchBar {
+    &__search {
+        width: 93%;
+        height: 30px;
+        border: none;
+        padding: 5px 10px;
+        border-bottom: 2px solid #858585;
+        margin: 10px;
+        font-size: 16px;
+        &:focus {
+            outline: none;
+            border-bottom: 2px solid #858585;
+        }
+    }
+}

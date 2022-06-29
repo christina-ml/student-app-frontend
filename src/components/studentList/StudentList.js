@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+
+import SearchBar from '../searchBar/SearchBar';
 import StudentCard from '../studentCard/StudentCard';
 
 import './StudentList.scss';
@@ -6,7 +8,7 @@ import './StudentList.scss';
 const StudentList = () => {
     // hooks
     const [students, setStudents] = useState([]);
-    const [studentList, setStudentList] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     // functions
     
@@ -26,15 +28,35 @@ const StudentList = () => {
         
     }, []); // empty array means run on mount
 
+
+    // when search term is updated, this component will re-render
+    // what to do on a re-render?
+    let filteredStudents = students;
+
+    if (searchTerm){
+        filteredStudents = students.filter(student => {
+            const fullName = `${student.firstName} ${student.lastName}`;
+
+            const fullNameToLowerCase = fullName.toLowerCase();
+
+            const searchTermToLowerCase = searchTerm.toLowerCase();
+
+            return fullNameToLowerCase.includes(searchTermToLowerCase);
+        })
+    }
+
     // return or JSX
     return (
         <div className="studentList">
-            <input className="studentList__search" placeholder="Search by name"/>
-            {students.map((student) => {
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            {filteredStudents.map((student) => {
                 return (
                     <StudentCard student={student} />
                 )
             })}
+
+            {filteredStudents.length === 0 && <div className="studentList__noResults">No Results</div>}
+
         </div>
     )
 }
