@@ -1,5 +1,5 @@
 import StudentList from './components/studentList/StudentList';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
