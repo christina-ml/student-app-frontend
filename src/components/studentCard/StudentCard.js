@@ -40,6 +40,16 @@ const StudentCard = ({student}) => {
                 <div className="studentCard__infoLine">
                     Average: {calculateAverage(grades)}%
                 </div>
+                <div className="studentCard__gradesList">
+                    {grades.map((grade, index) => {
+                            return (
+                            <div>
+                                <span>Test {index + 1}:</span>
+                                <span>{grades[index]}%</span></div>
+                            )
+                        })
+                    }
+                </div>
             </div>
         </div>
     )
