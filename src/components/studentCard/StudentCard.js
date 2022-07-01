@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import './StudentCard.scss';
+
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 const StudentCard = ({student}) => {
 
     const {pic, firstName, lastName, email, company, skill, grades} = student;
+
+    //  hooks
+    let [showGrades, setShowGrades] = useState(false);
+
 
     // functions
     const calculateAverage = (grades) => {
@@ -21,6 +27,7 @@ const StudentCard = ({student}) => {
 
     return (
         <div className="studentCard">
+            
             <div className="studentCard__profilePic">
                 <img src={pic} />
             </div>
@@ -45,10 +52,14 @@ const StudentCard = ({student}) => {
                             return (
                             <div>
                                 <span>Test {index + 1}:</span>
-                                <span>{grades[index]}%</span></div>
+                                <span>{grade[index]}%</span></div>
                             )
                         })
                     }
+                </div>
+                <div className="studentCard__toggleIcons">
+                    {!showGrades && <FaPlus className="studentCard__toggleIcon" onClick={() => setShowGrades(true)} size="1.8em" />}
+                    {showGrades && <FaMinus className="studentCard__toggleIcon" onClick={() => setShowGrades(true)} size="1.8em" />}
                 </div>
             </div>
         </div>

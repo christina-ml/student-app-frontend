@@ -40,5 +40,18 @@
             min-width: 60px;
             display: inline-block;
         }
+        display: none;
+    }
+
+    &__toggleIcons {
+        color: $darker-gray;
+        padding-top: 8px;
+    }
+
+    &__toggleIcon {
+        cursor: pointer;
+        &:hover {
+            color: black;
+        }
     }
 }
