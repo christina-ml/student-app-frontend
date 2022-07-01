@@ -7,16 +7,16 @@ const StudentCard = ({student}) => {
 
     // functions
     const calculateAverage = (grades) => {
-        // let sum = 0;
+        let sum = 0;
 
-        // grades.map(grade => {
-        //     sum += Number(grade);
-        // });
-        // return sum / grades.length;
+        grades.map(grade => {
+            sum += Number(grade);
+        });
+        return sum / grades.length;
 
         // ---- OR you can do this: -----
-        const sum = grades.reduce((sum, val) => sum + Number(val), 0);
-        return sum / grades.length;
+        // const sum = grades.reduce((sum, val) => sum + Number(val), 0);
+        // return sum / grades.length;
     }
 
     return (
