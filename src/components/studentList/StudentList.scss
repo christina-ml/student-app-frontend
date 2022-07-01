@@ -15,4 +15,15 @@
         display: table;
         padding-top: 200px;
     }
+
+    // media query if a screen is less than 440px
+    @media only screen and (max-width: 440px) {
+        background-color: lightblue;
+        width: 100%;
+        margin: 0;
+        height: auto;
+        overflow-y: unset;
+        box-shadow:unset;
+        border-radius: 0;
+    }
 }

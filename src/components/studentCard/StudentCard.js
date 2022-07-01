@@ -5,11 +5,11 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 
 const StudentCard = ({student}) => {
 
+    // props deconstructed
     const {pic, firstName, lastName, email, company, skill, grades} = student;
 
     //  hooks
-    let [showGrades, setShowGrades] = useState(false);
-
+    const [showGrades, setShowGrades] = useState(false);
 
     // functions
     const calculateAverage = (grades) => {
@@ -47,12 +47,14 @@ const StudentCard = ({student}) => {
                 <div className="studentCard__infoLine">
                     Average: {calculateAverage(grades)}%
                 </div>
-                <div className="studentCard__gradesList">
+                <div className="studentCard__gradesList"
+                    style={{"display": showGrades ? "block"}}
+                >
                     {grades.map((grade, index) => {
                             return (
                             <div>
                                 <span>Test {index + 1}:</span>
-                                <span>{grade[index]}%</span></div>
+                                <span>{grade}%</span></div>
                             )
                         })
                     }
