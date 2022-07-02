@@ -1,23 +1,26 @@
-import React, { useState } from "react";
-import './StudentCard.scss';
+import React, {useState} from 'react';
 
 import { FaPlus, FaMinus } from 'react-icons/fa';
+
+import './StudentCard.scss';
 
 const StudentCard = ({student}) => {
 
     // props deconstructed
     const {pic, firstName, lastName, email, company, skill, grades} = student;
 
-    //  hooks
+    // hooks
     const [showGrades, setShowGrades] = useState(false);
 
-    // functions
+    // functions 
     const calculateAverage = (grades) => {
+
         let sum = 0;
 
         grades.map(grade => {
             sum += Number(grade);
         });
+
         return sum / grades.length;
 
         // ---- OR you can do this: -----
@@ -27,13 +30,13 @@ const StudentCard = ({student}) => {
 
     return (
         <div className="studentCard">
-            
             <div className="studentCard__profilePic">
                 <img src={pic} />
             </div>
+            
             <div className="studentCard__info">
                 <div className="studentCard__name">
-                    {`${firstName} ${lastName}`}
+                    {`${firstName}  ${lastName}`}
                 </div>
                 <div className="studentCard__infoLine">
                     Email: {email}
@@ -47,23 +50,20 @@ const StudentCard = ({student}) => {
                 <div className="studentCard__infoLine">
                     Average: {calculateAverage(grades)}%
                 </div>
-                <div className="studentCard__gradesList"
-                    style={{"display": showGrades ? "block"}}
-                >
+                <div className="studentCard__gradesList" style={{"display": showGrades ? "block" : "none"}}>
                     {grades.map((grade, index) => {
-                            return (
-                            <div>
-                                <span>Test {index + 1}:</span>
-                                <span>{grade}%</span></div>
-                            )
-                        })
-                    }
-                </div>
-                <div className="studentCard__toggleIcons">
-                    {!showGrades && <FaPlus className="studentCard__toggleIcon" onClick={() => setShowGrades(true)} size="1.8em" />}
-                    {showGrades && <FaMinus className="studentCard__toggleIcon" onClick={() => setShowGrades(true)} size="1.8em" />}
+                        return (
+                            <div key={index}><span>Test {index+1}:</span><span>{grade}%</span></div>
+                        )
+                    })}
                 </div>
             </div>
+            <div className="studentCard__toggleIcons">
+
+                {!showGrades && <FaPlus className="studentCard__toggleIcon" onClick={() => setShowGrades(true)} size="1.8em"/>}
+                {showGrades && <FaMinus className="studentCard__toggleIcon" onClick={() => setShowGrades(false)} size="1.8em" />}
+            </div>
+            
         </div>
     )
 }

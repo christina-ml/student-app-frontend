@@ -1,12 +1,14 @@
 @import '../../designUtils/colors';
 @import '../../designUtils/fontDesign';
 
+
 .studentCard {
+
     display: flex;
     padding: 10px;
-    border-bottom: 2px solid $background-gray; 
+    border-bottom: 2px solid $background-gray;
 
-    &__profilePic {
+    &__profilePic { 
 
         margin: 8px;
 
@@ -20,12 +22,14 @@
 
     &__info {
         margin-left: 20px;
+        width: 70%;
     }
 
     &__name {
         font-size: 32px;
         font-weight: 600;
         text-transform: uppercase;
+        margin-bottom: 8px;
     }
 
     &__infoLine {
@@ -36,7 +40,7 @@
     &__gradesList {
         @extend %gray-and-indented;
         margin-top: 10px;
-        span {
+        span {  
             min-width: 60px;
             display: inline-block;
         }
@@ -44,10 +48,11 @@
     }
 
     &__toggleIcons {
-        color: $darker-gray;
+        color: $shadow-gray;
         padding-top: 8px;
-    }
 
+    }
+    
     &__toggleIcon {
         cursor: pointer;
         &:hover {
@@ -55,9 +60,10 @@
         }
     }
 
-    @media only screen and (max-width: 440px) {
+    @media only screen and (max-width: 440px) { 
         &__name {
             font-size: 20px;
         }
     }
+
 }

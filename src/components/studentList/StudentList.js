@@ -56,7 +56,6 @@ const StudentList = () => {
             })}
 
             {filteredStudents.length === 0 && <div className="studentList__noResults">No Results</div>}
-
         </div>
     )
 }
