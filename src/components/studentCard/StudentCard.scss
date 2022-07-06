@@ -8,6 +8,13 @@
     padding: 10px;
     border-bottom: 2px solid $background-gray;
 
+
+    a {
+        text-decoration: none;
+        display: flex;
+        color: unset;
+    }
+
     &__profilePic { 
 
         margin: 8px;

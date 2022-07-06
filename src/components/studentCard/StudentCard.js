@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
@@ -28,8 +29,15 @@ const StudentCard = ({student}) => {
         // return sum / grades.length;
     }
 
+    const toggleGrades = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        setShowGrades(!showGrades);
+    }
+
     return (
         <div className="studentCard">
+            <Link to={`/students/${student.id}`}>
             <div className="studentCard__profilePic">
                 <img src={pic} />
             </div>
@@ -63,7 +71,7 @@ const StudentCard = ({student}) => {
                 {!showGrades && <FaPlus className="studentCard__toggleIcon" onClick={() => setShowGrades(true)} size="1.8em"/>}
                 {showGrades && <FaMinus className="studentCard__toggleIcon" onClick={() => setShowGrades(false)} size="1.8em" />}
             </div>
-            
+            </Link>
         </div>
     )
 }

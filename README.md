@@ -1,3 +1,8 @@
+# React Router
+```
+npm install react-router-dom@6
+```
+
 <!-- install react icons -->
 # React Icons
 ```
