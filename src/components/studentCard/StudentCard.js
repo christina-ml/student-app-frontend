@@ -35,9 +35,10 @@ const StudentCard = ({student}) => {
         setShowGrades(!showGrades);
     }
 
+    // passing in our student data in the Link to /students/:studentId
     return (
         <div className="studentCard">
-            <Link to={`/students/${student.id}`}>
+            <Link to={`/students/${student.id}`} state={{ student: student }}>
             <div className="studentCard__profilePic">
                 <img src={pic} />
             </div>
