@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import SearchBar from '../searchBar/SearchBar';
+import SingleTextInput from '../SingleTextInput/SingleTextInput';
 import StudentCard from '../studentCard/StudentCard';
 
 import './StudentList.scss';
@@ -50,7 +50,7 @@ const StudentList = () => {
    // return or JSX
    return (
        <div className="studentList">
-         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+         <SingleTextInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
           {filteredStudents.map((student) => {
            return (
                <StudentCard student={student} key={student.id} />

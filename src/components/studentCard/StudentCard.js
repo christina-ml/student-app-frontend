@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 
+import SingleTextInput from '../SingleTextInput/SingleTextInput';
+
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
 import './StudentCard.scss';
@@ -74,7 +76,9 @@ const StudentCard = ({student}) => {
                         <span className="studentCard__tag">new tag</span>
                         <span className="studentCard__tag">a tag with longer name</span>
                     </div>
-                    <div className="studentCard__tagInput"></div>
+                    <div className="studentCard__tagInput">
+                        <SingleTextInput placeholder="Add a tag" />
+                    </div>
                 </div>
             </div>
             
