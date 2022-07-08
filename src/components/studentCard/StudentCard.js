@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
@@ -69,8 +69,8 @@ const StudentCard = ({student}) => {
             </div>
             <div className="studentCard__toggleIcons">
 
-                {!showGrades && <FaPlus className="studentCard__toggleIcon" onClick={() => setShowGrades(true)} size="1.8em"/>}
-                {showGrades && <FaMinus className="studentCard__toggleIcon" onClick={() => setShowGrades(false)} size="1.8em" />}
+                {!showGrades && <FaPlus className="studentCard__toggleIcon" onClick={(e) => toggleGrades(e)} size="1.8em"/>}
+                {showGrades && <FaMinus className="studentCard__toggleIcon" onClick={(e) => toggleGrades(e)} size="1.8em" />}
             </div>
             </Link>
         </div>
