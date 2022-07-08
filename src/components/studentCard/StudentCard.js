@@ -66,12 +66,24 @@ const StudentCard = ({student}) => {
                         )
                     })}
                 </div>
+
+                <div className="studentCard__tagCollection">
+                    <div className="studentCard__tags">
+                        <span className="studentCard__tag">new tag</span>
+                        <span className="studentCard__tag">a tag with longer name</span>
+                        <span className="studentCard__tag">new tag</span>
+                        <span className="studentCard__tag">a tag with longer name</span>
+                    </div>
+                    <div className="studentCard__tagInput"></div>
+                </div>
             </div>
+            
             <div className="studentCard__toggleIcons">
 
                 {!showGrades && <FaPlus className="studentCard__toggleIcon" onClick={(e) => toggleGrades(e)} size="1.8em"/>}
                 {showGrades && <FaMinus className="studentCard__toggleIcon" onClick={(e) => toggleGrades(e)} size="1.8em" />}
             </div>
+            
             </Link>
         </div>
     )
