@@ -69,17 +69,7 @@ const StudentCard = ({student}) => {
                     })}
                 </div>
 
-                <div className="studentCard__tagCollection">
-                    <div className="studentCard__tags">
-                        <span className="studentCard__tag">new tag</span>
-                        <span className="studentCard__tag">a tag with longer name</span>
-                        <span className="studentCard__tag">new tag</span>
-                        <span className="studentCard__tag">a tag with longer name</span>
-                    </div>
-                    <div className="studentCard__tagInput">
-                        <SingleTextInput placeholder="Add a tag" />
-                    </div>
-                </div>
+           
             </div>
             
             <div className="studentCard__toggleIcons">
@@ -89,6 +79,19 @@ const StudentCard = ({student}) => {
             </div>
             
             </Link>
+
+            <div className="studentCard__tagCollection">
+                    <div className="studentCard__tags">
+                        <span className="studentCard__tag">new tag</span>
+                        <span className="studentCard__tag">a tag with longer name</span>
+                        <span className="studentCard__tag">new tag</span>
+                        <span className="studentCard__tag">a tag with longer name</span>
+                    </div>
+                    <div className="studentCard__tagInput">
+                        <SingleTextInput width="26%" placeholder="Add a tag" />
+                    </div>
+                </div>
+
         </div>
     )
 }
