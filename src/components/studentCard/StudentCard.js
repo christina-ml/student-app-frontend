@@ -14,6 +14,8 @@ const StudentCard = ({student}) => {
 
     // hooks
     const [showGrades, setShowGrades] = useState(false);
+    // const [tags, setTags] = useState(['new tag', 'a longer tag this time']);
+    const [tags, setTags] = useState([]);
 
     // functions 
     const calculateAverage = (grades) => {
@@ -82,10 +84,16 @@ const StudentCard = ({student}) => {
 
             <div className="studentCard__tagCollection">
                     <div className="studentCard__tags">
-                        <span className="studentCard__tag">new tag</span>
+                        {tags.map((tag, index) => {
+                            return (
+                                <span className="studentCard__tag" key={tag + index} >{tag}</span>
+                            )
+                        })}
+
+                        {/* <span className="studentCard__tag">new tag</span>
                         <span className="studentCard__tag">a tag with longer name</span>
                         <span className="studentCard__tag">new tag</span>
-                        <span className="studentCard__tag">a tag with longer name</span>
+                        <span className="studentCard__tag">a tag with longer name</span> */}
                     </div>
                     <div className="studentCard__tagInput">
                         <SingleTextInput width="26%" placeholder="Add a tag" />
