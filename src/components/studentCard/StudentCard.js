@@ -14,10 +14,7 @@ const StudentCard = ({student}) => {
 
     // hooks
     const [showGrades, setShowGrades] = useState(false);
-    // const [tags, setTags] = useState(['new tag', 'a longer tag this time']);
     const [tags, setTags] = useState([]);
-
-    // hook for what happens when you press "enter". This will be a single input
     const [tag, setTag] = useState('');
 
     console.log("tag:", tag);

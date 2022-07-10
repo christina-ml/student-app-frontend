@@ -56,7 +56,7 @@ function SingleTextInput ({searchTerm, setSearchTerm, collection=[], onSubmit, p
             className="searchBar" 
             placeholder={placeholder}
             value={searchTerm} 
-            onChnage={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) => setSearchTerm(e.target.value)}
 
 
             // onChange={(e) => finalizeInput(e)}
