@@ -15,10 +15,11 @@ function SingleTextInput({searchTerm, setSearchTerm, placeholder="Search by name
         "width" : width
     }
 
-    const handleFirstClick = (e) => {
-        console.log('on first click');
-        // e.preventDefault();
-        // e.stopPropagation();
+    const setSearchTerm = (e) => {
+        setSearchTerm(e.target.value);
+        console.log(e)
+
+        // if (e.key === 'Enter')
     }
 
     return (
@@ -27,8 +28,7 @@ function SingleTextInput({searchTerm, setSearchTerm, placeholder="Search by name
             className="searchBar" 
             placeholder={placeholder}
             value={searchTerm} 
-            onChange={updateSearchTerm}
-            onMouseDown={(e) => handleFirstClick(e)}
+            onChange={(e) => setSearchTerm(e.target.value)}
         />
     );
 }

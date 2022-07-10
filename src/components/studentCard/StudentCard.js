@@ -16,6 +16,9 @@ const StudentCard = ({student}) => {
     const [showGrades, setShowGrades] = useState(false);
     // const [tags, setTags] = useState(['new tag', 'a longer tag this time']);
     const [tags, setTags] = useState([]);
+    const [tag, setTag] = useState('');
+
+    console.log("tag:", tag)
 
     // functions 
     const calculateAverage = (grades) => {
@@ -96,7 +99,7 @@ const StudentCard = ({student}) => {
                         <span className="studentCard__tag">a tag with longer name</span> */}
                     </div>
                     <div className="studentCard__tagInput">
-                        <SingleTextInput width="26%" placeholder="Add a tag" />
+                        <SingleTextInput searchTerm={tag} setSearchTerm={setTag} width="26%" placeholder="Add a tag" />
                     </div>
                 </div>
 
