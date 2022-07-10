@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import SingleTextInput from '../SingleTextInput/SingleTextInput';
+import SingleTextInput from '../singleTextInput/SingleTextInput';
 import StudentCard from '../studentCard/StudentCard';
 
 import './StudentList.scss';
@@ -57,7 +57,7 @@ const StudentList = () => {
            )
           })}
 
-          {filteredStudents.length == 0 && <div className="studentList__noResults">No Results </div>}
+          {filteredStudents.length === 0 && <div className="studentList__noResults">No Results </div>}
        </div>
    )
 

@@ -1,3 +1,19 @@
+# tag + index
+`StudentCard.js` - for `tags.map`:
+A `tag` + `index` will create a unique value for the `key`.
+
+# SingleTextInput (component)
+A generic component that is for `SingleTextInput`.
+
+`SingleTextInput` is 3 components in one.- To be able to reuse the code 3 times:
+- Search input
+- Search by tag input
+- Create tag input
+
+Only differences between the 3 times `SingleTextInput` is used: 
+
+The *placeholder* is different, and the *width* is different.
+
 # React Router
 ```
 npm install react-router-dom@6

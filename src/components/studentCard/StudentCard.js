@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 
-import SingleTextInput from '../SingleTextInput/SingleTextInput';
+import SingleTextInput from '../singleTextInput/SingleTextInput';
 
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
@@ -16,9 +16,11 @@ const StudentCard = ({student}) => {
     const [showGrades, setShowGrades] = useState(false);
     // const [tags, setTags] = useState(['new tag', 'a longer tag this time']);
     const [tags, setTags] = useState([]);
+
+    // hook for what happens when you press "enter". This will be a single input
     const [tag, setTag] = useState('');
 
-    console.log("tag:", tag)
+    console.log("tag:", tag);
 
     // functions 
     const calculateAverage = (grades) => {
@@ -73,16 +75,12 @@ const StudentCard = ({student}) => {
                         )
                     })}
                 </div>
-
-           
             </div>
             
             <div className="studentCard__toggleIcons">
-
                 {!showGrades && <FaPlus className="studentCard__toggleIcon" onClick={(e) => toggleGrades(e)} size="1.8em"/>}
                 {showGrades && <FaMinus className="studentCard__toggleIcon" onClick={(e) => toggleGrades(e)} size="1.8em" />}
             </div>
-            
             </Link>
 
             <div className="studentCard__tagCollection">
@@ -92,14 +90,13 @@ const StudentCard = ({student}) => {
                                 <span className="studentCard__tag" key={tag + index} >{tag}</span>
                             )
                         })}
-
-                        {/* <span className="studentCard__tag">new tag</span>
-                        <span className="studentCard__tag">a tag with longer name</span>
-                        <span className="studentCard__tag">new tag</span>
-                        <span className="studentCard__tag">a tag with longer name</span> */}
+                        {/* <span className="studentCard__tag">new tag</span> */}
+                        {/* <span className="studentCard__tag">a tag with longer name</span> */}
+                        {/* <span className="studentCard__tag">new tag</span> */}
+                        {/* <span className="studentCard__tag">a tag with longer name</span> */}
                     </div>
                     <div className="studentCard__tagInput">
-                        <SingleTextInput searchTerm={tag} setSearchTerm={setTag} width="26%" placeholder="Add a tag" />
+                        <SingleTextInput onSubmit={setTags} collection={tags} searchTerm={tag} setSearchTerm={setTag} width="26%" placeholder="Add a tag" />
                     </div>
                 </div>
 
