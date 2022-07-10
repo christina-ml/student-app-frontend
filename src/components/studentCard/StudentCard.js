@@ -87,10 +87,6 @@ const StudentCard = ({student}) => {
                                 <span className="studentCard__tag" key={tag + index} >{tag}</span>
                             )
                         })}
-                        {/* <span className="studentCard__tag">new tag</span> */}
-                        {/* <span className="studentCard__tag">a tag with longer name</span> */}
-                        {/* <span className="studentCard__tag">new tag</span> */}
-                        {/* <span className="studentCard__tag">a tag with longer name</span> */}
                     </div>
                     <div className="studentCard__tagInput">
                         <SingleTextInput onSubmit={setTags} collection={tags} searchTerm={tag} setSearchTerm={setTag} width="26%" placeholder="Add a tag" />
