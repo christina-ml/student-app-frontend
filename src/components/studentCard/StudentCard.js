@@ -10,7 +10,7 @@ import './StudentCard.scss';
 const StudentCard = ({student}) => {
 
     // props deconstructed
-    const {pic, firstName, lastName, email, company, skill, grades} = student;
+    const {pic, firstname, lastname, email, company, skill, grades = []} = student;
 
     // hooks
     const [showGrades, setShowGrades] = useState(false);
@@ -51,7 +51,7 @@ const StudentCard = ({student}) => {
             
             <div className="studentCard__info">
                 <div className="studentCard__name">
-                    {`${firstName}  ${lastName}`}
+                    {`${firstname}  ${lastname}`}
                 </div>
                 <div className="studentCard__infoLine">
                     Email: {email}
@@ -63,7 +63,7 @@ const StudentCard = ({student}) => {
                     Skill: {skill}
                 </div>
                 <div className="studentCard__infoLine">
-                    Average: {calculateAverage(grades)}%
+                    Average: {grades.length && calculateAverage(grades)}%
                 </div>
                 <div className="studentCard__gradesList" style={{"display": showGrades ? "block" : "none"}}>
                     {grades.map((grade, index) => {
