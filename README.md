@@ -1,3 +1,9 @@
+# if frontend is deployed to heroku (Jordan deployed his to heroku, I'm at the limit for how many heroku apps I can have at one time, which is 5):
+after adding & making a commit:
+```
+git push heroku
+```
+
 # tag + index
 `StudentCard.js` - for `tags.map`:
 A `tag` + `index` will create a unique value for the `key`.
