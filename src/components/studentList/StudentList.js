@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import SingleTextInput from '../singleTextInput/SingleTextInput';
 import StudentCard from '../studentCard/StudentCard';
+import EmptyView from '../emptyView/EmptyView';
 
 import './StudentList.scss';
 
@@ -10,10 +11,14 @@ const StudentList = () => {
     // hooks
     const [students, setStudents] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [loading, setLoading] = useState(false);
 
     // functions
 
     useEffect(() => {
+
+        setLoading(true);
+
         // const url = 'https://student-app-backend-june.herokuapp.com/students'; // => Jordan's backend url
         const url = 'https://student-app-backend-cl.herokuapp.com/students';
 
@@ -23,6 +28,7 @@ const StudentList = () => {
        .then(data => {
         //    console.log(data)
            setStudents(data);
+           setLoading(false);
        })
        // get our students
        // update our students hook with the new data
@@ -56,8 +62,10 @@ const StudentList = () => {
                <StudentCard student={student} key={student.id} />
            )
           })}
-
-          {filteredStudents.length === 0 && <div className="studentList__noResults">No Results </div>}
+       
+        {loading && <EmptyView text="Loading..." />}
+        
+        {filteredStudents.length === 0 && <EmptyView />}
        </div>
    )
 
