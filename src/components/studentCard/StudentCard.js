@@ -13,7 +13,7 @@ import './StudentCard.scss';
 const StudentCard = ({student}) => {
 
     // props deconstructed
-    const {pic, firstname, lastname, email, company, skill} = student;
+    const {id, pic, firstname, lastname, email, company, skill} = student;
 
     // hooks
     const [grades, setGrades] = useState([]);
@@ -21,7 +21,6 @@ const StudentCard = ({student}) => {
     const [gradesLoading, setGradesLoading] = useState(false);
     const [tags, setTags] = useState([]);
     const [tag, setTag] = useState('');
-    console.log("tag:", tag);
 
     // functions 
     const calculateAverage = (grades) => {
@@ -49,39 +48,41 @@ const StudentCard = ({student}) => {
     const fetchAndShowGrades = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        
 
-        // do we already have the grades?
-        if (grades.length > 0){
+        // do we already have the grades? 
+        if(grades.length > 0){
             setShowGrades(true);
         } else {
+
             setGradesLoading(true); // before the grades have been loaded during the `fetch`
 
-            const url = `http://localhost:9000/students/1/grades`;
+            // const url = `https://student-app-backend-june.herokuapp.com/students/${id}/grades`; // <= Jordan's backend link
+            // const url = `http://localhost:9000/students/1/grades`;
+            const url = `https://student-app-backend-cl.herokuapp.com/students/${id}/grades`;
 
             fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.length){
-                        setGrades(data);
-                        setGradesLoading(false); // after the grades have loaded
+            .then(response => response.json())
+            .then(data => {
 
-                    } else {
-
-                    }
-                })
-            }
+                setGrades(data);
+                setShowGrades(true);
+                setGradesLoading(false); // after the grades have loaded
+            })
         }
+
+    }
+
         
-    useEffect(() => {
-        if (grades.length){
-            setShowGrades(!showGrades);
-        }    
-    }, [grades]) // whenever grades changes, then we can do something like this
+    // useEffect(() => {
+    //     if(grades.length)
+    //         setShowGrades(!showGrades);
+    // }, [grades]) // whenever grades changes, then we can do something like this
 
     // passing in our student data in the Link to /students/:studentId
     return (
         <div className="studentCard">
-            <Link to={`/students/${student.id}`} state={{ student: student }}>
+            <Link to={`/students/${id}`} state={{ student: student }}>
             
                 <div className="studentCard__profilePic">
                     <img src={pic} />
@@ -102,7 +103,7 @@ const StudentCard = ({student}) => {
                     </div>
 
                     <div className="studentCard__gradesList" style={{"display": showGrades ? "block" : "none"}}>
-                        {grades.length > 0 && 
+                        {grades.length > 0 &&
                         <>
                             <div className="studentCard__gradeAverage">
                                 Average: {grades.length && calculateAverage(grades)}%
@@ -114,7 +115,7 @@ const StudentCard = ({student}) => {
                             })}
                         </>
                         }
-                        {grades.length === 0 && <EmptyView />}
+                        {grades.length === 0  && <EmptyView text="No Grades for this Student"/>}
                     </div>
                 </div>
                 <div className="studentCard__toggleIcons">

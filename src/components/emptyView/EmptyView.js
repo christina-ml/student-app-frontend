@@ -2,9 +2,18 @@ import React from 'react';
 
 import './EmptyView.scss';
 
-function EmptyView({text="No Results"}) {
+const styleObj = {
+    "center" : {
+        "display" : "table",
+        "padding" : "200px 0"
+    }
+}
+
+function EmptyView(props) {
+
+    const {text="No Results", center} = props;
     return (
-        <div className="emptyView">{text}</div>
+        <div style={center && styleObj.center} className="emptyView">{text}</div>
     );
 }
 

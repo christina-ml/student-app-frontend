@@ -17,7 +17,7 @@ function App() {
   return (
       <div className="App">
         <BrowserRouter>
-        <Navbar />
+          <Navbar />
           <Routes>
               <Route path="/students/:studentId" element={<StudentDetailPage />} />
               <Route path="/" element={<StudentList />} /> 
