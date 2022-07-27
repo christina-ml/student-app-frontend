@@ -21,7 +21,7 @@ function StudentDetailPage(props) {
             // const singleStudentURL =`https://student-app-backend-june.herokuapp.com/students/${studentId}`; <= Jordan's backend url
             const singleStudentURL =`https://student-app-backend-cl.herokuapp.com/students/${studentId}`;
 
-            fetch(singleStudentURL)
+              fetch(singleStudentURL)
                 .then(response => response.json())
                 .then(data => {
                     setStudent(data);
@@ -45,7 +45,7 @@ function StudentDetailPage(props) {
     return (
         <div className="studentDetailPage">
            {Object.keys(student).length > 0 && <StudentCard student={student} showDelete />}
-           {Object.keys(student).length > 0 && <StudentUpdateForm student={student}/>}
+           {Object.keys(student).length > 0 && <StudentUpdateForm student={student} /> }
         </div>
     );
 }

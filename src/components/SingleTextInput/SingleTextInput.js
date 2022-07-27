@@ -20,7 +20,7 @@ function SingleTextInput ({searchTerm, setSearchTerm, collection=[], onSubmit, p
     
         //     // 👇️ call submit function here
         //     handleSubmit();
-          // }
+        //   }
         };
     
         document.addEventListener('keydown', keyDownHandler);

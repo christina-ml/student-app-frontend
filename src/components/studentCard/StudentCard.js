@@ -88,28 +88,29 @@ const StudentCard = ({student, showDelete=false}) => {
         // const url = `https://student-app-backend-cl.herokuapp.com/students/${id}`;
 
         fetch(url, { method: 'DELETE' })
-            .then(response =>  response.json())
-            .then(data => {
-                // redirect to home page
-                navigate("/", { 
-                    state: {
-                        studentName: `${data.firstname} ${data.lastname}`
-                    }
-                });
+        .then(response =>  response.json())
+        .then(data => {
+            // redirect to home page
+            navigate("/", { 
+                state: {
+                    studentName: `${data.firstname} ${data.lastname}`
+                }
+            });
 
-                setDeleteUserLoading(false)
-            }).catch(err => {
-                // show toast that delete was unsuccessful
-                setDeleteUserLoading(false)
-                setShowSnackbar(true);
-            })
+            setDeleteUserLoading(false)
+        }).catch(err => {
+            // show toast that delete was unsuccessful
+            setDeleteUserLoading(false)
+            setShowSnackbar(true);
+        })
 
-    }
+}
 
-    // useEffect(() => {
-    //     if(grades.length)
-    //         setShowGrades(!showGrades);
-    // }, [grades])
+// useEffect(() => {
+//     if(grades.length)
+//         setShowGrades(!showGrades);
+// }, [grades])
+
 
     return (
         <div className="studentCard">

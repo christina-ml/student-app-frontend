@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
+
 
 import {AiOutlineReload } from 'react-icons/ai';
 
@@ -11,18 +12,19 @@ import './StudentUpdateForm.scss';
 
 function StudentUpdateForm({student}) {
 
-    // hooks
     const [firstname, setFirstname] = useState(student.firstname);
     const [lastname, setLastname] = useState(student.lastname);
     const [company, setCompany] = useState(student.company);
-    const [city, setCity] = useState(student.firstnacityme);
+    const [city, setCity] = useState(student.city);
     const [skill, setSkill] = useState(student.skill);
     const [pic, setPic] = useState(student.pic);
-    const [anyChanges, setAnyChanges] = useState(false); // by default - no changes
+    const [anyChanges, setAnyChanges] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showSnackbar, setShowSnackbar] = useState(false);
 
+
     const handleChange = (e) => {
+        
         setAnyChanges(true);
 
         const field = e.target.name;
@@ -47,62 +49,65 @@ function StudentUpdateForm({student}) {
                 setPic(e.target.value);
                 break;
         }
+
     }
 
     const handleSubmit = () => {
-
+        
         // loading state
         setLoading(true);
 
-        // set our target url
+        // set our target url 
+
         const url = `https://student-app-backend-june.herokuapp.com/students/${student.id}`;
 
         // what data are we passing to our backend?
-
         // what http method are we using
 
-        // our data will be all of our hooks - all the things we want to send to our backend to update
-        let requestOptions = {
+        const requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({firstname, lastname, company, city, skill, pic})
-        }
+            body: JSON.stringify({ firstname, lastname, company, city, skill, pic })
+        };
 
         // fetch
-        fetch (url, requestOptions)
-            .then(response => response.json())
-            .then(data => {
+        fetch(url, requestOptions)
+        .then(response => response.json())
+        .then(data => {
 
-                // success state
-                console.log(data);
-                setAnyChanges(false)
-                // show success toast
+            // success state
+            console.log(data);
+            setAnyChanges(false);
+            // show success toast
+            //TODO
+            
+            // error state
+            //TODO
 
-                // error state
-                // TODO
+            // set loading to false 
+            setLoading(false);
 
-                // set loading to false
-                setLoading(false);
 
-            }).catch(err => {
-                setLoading(false);
-                // let user know an error has occurred
-                setShowSnackbar(true); // show toast that update was unsuccessful
-            })
-
+        }).catch(err => {
+            setLoading(false);
+            // let user know an error has occurred 
+            setShowSnackbar(true);
+        });
         
 
     }
 
     return (
         <div className="studentUpdateForm">
-            <Snackbar 
+             
+             <Snackbar 
                 open={showSnackbar} 
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 autoHideDuration={1500}
                 onClose={() => setShowSnackbar(false)}>
                 <Alert severity="error">An error occurred while updating — try again later.</Alert>
             </Snackbar>
+
             <div className="studentUpdateForm__title">Update Student</div>
             <div className="studentUpdateForm__inputs">
                 <TextField 
@@ -112,45 +117,45 @@ function StudentUpdateForm({student}) {
                     value={firstname}
                     name='firstname'
                     onChange={(e) => handleChange(e)}
-                />
+                     />
                 <TextField 
                     id="outlined-basic" 
                     label="Last Name" 
-                    variant="outlined"
+                    variant="outlined" 
                     value={lastname}
                     name='lastname'
-                    onChange={(e) => handleChange(e)}
+                    onChange={(e) => handleChange(e)} 
                 />
                 <TextField 
                     id="outlined-basic" 
                     label="Company" 
-                    variant="outlined"
-                    value={company}
-                    name='company'
-                    onChange={(e) => handleChange(e)}
+                    variant="outlined" 
+                    value={company} 
+                    name="company"
+                    onChange={(e) => handleChange(e)} 
                 />
                 <TextField 
                     id="outlined-basic" 
                     label="City" 
-                    variant="outlined"
+                    variant="outlined" 
                     value={city}
-                    name='city'
-                    onChange={(e) => handleChange(e)}
+                    name="city"
+                    onChange={(e) => handleChange(e)} 
                 />
                 <TextField 
                     id="outlined-basic" 
                     label="Skill" 
-                    variant="outlined"
+                    variant="outlined" 
                     value={skill}
-                    name='skill'
-                    onChange={(e) => handleChange(e)}
+                    name="skill"
+                    onChange={(e) => handleChange(e)} 
                 />
                 <TextField 
                     id="outlined-basic" 
                     label="Pic Url" 
-                    variant="outlined"
-                    value={pic}
-                    name='pic'
+                    variant="outlined" 
+                    value={pic} 
+                    name="pic"
                     onChange={(e) => handleChange(e)}
                 />
             </div>
@@ -160,9 +165,9 @@ function StudentUpdateForm({student}) {
                     size="large" 
                     disabled={!anyChanges}
                     onClick={handleSubmit}
-                    endIcon={loading && <AiOutlineReload  className="studentUpdateForm__submitLoader-spinning"/>}
+                    endIcon={loading && <AiOutlineReload className="studentUpdateForm__submitLoader-spinning"/>}
                 >
-                Update
+                    Update
                 </Button>
             </div>
         </div>
