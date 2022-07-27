@@ -1,16 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import SingleTextInput from '../singleTextInput/SingleTextInput';
 import EmptyView from '../emptyView/EmptyView';
+import DialogBox from '../dialogBox/DialogBox';
 
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+
+import { FaPlus, FaMinus, FaTrash } from 'react-icons/fa';
 import {AiOutlineReload } from 'react-icons/ai';
-
 
 import './StudentCard.scss';
 
-const StudentCard = ({student}) => {
+const StudentCard = ({student, showDelete=false}) => {
+
+    let navigate = useNavigate();
 
     // props deconstructed
     const {id, pic, firstname, lastname, email, company, skill} = student;
@@ -21,6 +26,9 @@ const StudentCard = ({student}) => {
     const [gradesLoading, setGradesLoading] = useState(false);
     const [tags, setTags] = useState([]);
     const [tag, setTag] = useState('');
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+    const [deleteUserLoading, setDeleteUserLoading] = useState(false);
+    const [showSnackbar, setShowSnackbar] = useState(false);
 
     // functions 
     const calculateAverage = (grades) => {
@@ -32,10 +40,6 @@ const StudentCard = ({student}) => {
         });
 
         return sum / grades.length;
-
-        // ---- OR you can do this: -----
-        // const sum = grades.reduce((sum, val) => sum + Number(val), 0);
-        // return sum / grades.length;
     }
 
     const hideGrades = (e) => {
@@ -58,7 +62,6 @@ const StudentCard = ({student}) => {
             setGradesLoading(true); // before the grades have been loaded during the `fetch`
 
             // const url = `https://student-app-backend-june.herokuapp.com/students/${id}/grades`; // <= Jordan's backend link
-            // const url = `http://localhost:9000/students/1/grades`;
             const url = `https://student-app-backend-cl.herokuapp.com/students/${id}/grades`;
 
             fetch(url)
@@ -67,21 +70,57 @@ const StudentCard = ({student}) => {
 
                 setGrades(data);
                 setShowGrades(true);
-                setGradesLoading(false); // after the grades have loaded
+                setGradesLoading(false);
             })
         }
 
     }
 
-        
+    const showDeleteUserDialogue = (e) => {
+        setShowDeleteDialog(true);
+    }
+
+    const deleteUser = () => {
+
+        setDeleteUserLoading(true);
+        // url to delete 
+        const url = `https://student-app-backend-june.herokuapp.com/students/${id}`;
+        // const url = `https://student-app-backend-cl.herokuapp.com/students/${id}`;
+
+        fetch(url, { method: 'DELETE' })
+            .then(response =>  response.json())
+            .then(data => {
+                // redirect to home page
+                navigate("/", { 
+                    state: {
+                        studentName: `${data.firstname} ${data.lastname}`
+                    }
+                });
+
+                setDeleteUserLoading(false)
+            }).catch(err => {
+                // show toast that delete was unsuccessful
+                setDeleteUserLoading(false)
+                setShowSnackbar(true);
+            })
+
+    }
+
     // useEffect(() => {
     //     if(grades.length)
     //         setShowGrades(!showGrades);
-    // }, [grades]) // whenever grades changes, then we can do something like this
+    // }, [grades])
 
-    // passing in our student data in the Link to /students/:studentId
     return (
         <div className="studentCard">
+            <Snackbar 
+                open={showSnackbar} 
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                autoHideDuration={1500}
+                onClose={() => setShowSnackbar(false)}>
+                <Alert severity="error">An error occurred while deleting — try again later.</Alert>
+            </Snackbar>
+
             <Link to={`/students/${id}`} state={{ student: student }}>
             
                 <div className="studentCard__profilePic">
@@ -118,24 +157,32 @@ const StudentCard = ({student}) => {
                         {grades.length === 0  && <EmptyView text="No Grades for this Student"/>}
                     </div>
                 </div>
-                <div className="studentCard__toggleIcons">
+                <div className="studentCard__actionIcons">
                     {gradesLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size="1.8em" />}
                     {(!showGrades && !gradesLoading) && <FaPlus className="studentCard__toggleIcon" onClick={(e) => fetchAndShowGrades(e)} size="1.8em"/>}
                     {(showGrades && !gradesLoading) && <FaMinus className="studentCard__toggleIcon" onClick={(e) => hideGrades(e)} size="1.8em" />}
-                 </div>
+                </div>
+    
             </Link> 
-            <div className="studentCard__tagCollection">
-                        <div className="studentCard__tags">
-                            {tags.map((tag, index) => {
-                                return (
-                                    <span className="studentCard__tag" key={tag + index}>{tag}</span>
-                                )
-                            })}
-                        </div>
-                        <div className="studentCard__tagInput">
-                            <SingleTextInput onSubmit={setTags} collection={tags} searchTerm={tag} setSearchTerm={setTag} width="26%" placeholder="Add a tag" />
-                        </div>
+            <div className="studentCard__tagCollectionRow">
+                <div className="studentCard__tagCollection">
+                    <div className="studentCard__tags">
+                        {tags.map((tag, index) => {
+                            return (
+                                <span className="studentCard__tag" key={tag + index}>{tag}</span>
+                            )
+                        })}
                     </div>
+                    <div className="studentCard__tagInput">
+                        <SingleTextInput onSubmit={setTags} collection={tags} searchTerm={tag} setSearchTerm={setTag} width="26%" placeholder="Add a tag" />
+                    </div>
+                </div>
+                {showDelete && <div>
+                    {deleteUserLoading && <AiOutlineReload className="studentCard__toggleIcon-spinning" size="1.8em" />}
+                    {(!showGrades && !deleteUserLoading) && <FaTrash className="studentCard__trashIcon" onClick={(e) => showDeleteUserDialogue(e)} size="1.8em"/>}
+                </div> }
+            </div>
+            <DialogBox open={showDeleteDialog} setOpen={setShowDeleteDialog} deleteUser={deleteUser} />
         </div>
     )
 }

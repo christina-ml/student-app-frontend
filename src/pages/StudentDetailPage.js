@@ -1,7 +1,10 @@
+
+
 import React, {useEffect, useState} from 'react';
 import {useParams, useLocation} from "react-router-dom";
 
 import StudentCard from '../components/studentCard/StudentCard';
+import StudentUpdateForm from '../components/studentUpdateForm/StudentUpdateForm';
 
 function StudentDetailPage(props) {
 
@@ -32,10 +35,17 @@ function StudentDetailPage(props) {
     // with the student Id, we can fetch student info
     // from our API
 
+    // update student 
+    // create update componentn
+    // with form for all fields
+    // on submit, show loader
+    // on success show toast 
+    // on fail show toast (error)s
 
     return (
         <div className="studentDetailPage">
-           {Object.keys(student).length > 0 && <StudentCard student={student} />}
+           {Object.keys(student).length > 0 && <StudentCard student={student} showDelete />}
+           <StudentUpdateForm />
         </div>
     );
 }

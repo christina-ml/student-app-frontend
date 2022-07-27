@@ -2,8 +2,7 @@ import React, {useEffect} from 'react';
 import { FaTags } from 'react-icons/fa';
 
 import './SingleTextInput.scss';
-// modified our SearchBar to add a placeholder prop to be passed in. Default value is "Search by name"
-// same for width - adding a style object
+
 function SingleTextInput ({searchTerm, setSearchTerm, collection=[], onSubmit, placeholder="Search by name", width="93%"}) {
 
 
