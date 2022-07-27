@@ -65,7 +65,7 @@ function StudentUpdateForm({student}) {
         let requestOptions = {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ firstname, lastname, company, city, skill, pic})
+            body: JSON.stringify({firstname, lastname, company, city, skill, pic})
         }
 
         // fetch
@@ -74,7 +74,12 @@ function StudentUpdateForm({student}) {
             .then(data => {
 
                 // success state
+                console.log(data);
+                setAnyChanges(false)
+                // show success toast
+
                 // error state
+                // TODO
 
                 // set loading to false
                 setLoading(false);
