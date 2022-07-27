@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
+import {AiOutlineReload } from 'react-icons/ai';
+
 import './StudentUpdateForm.scss';
 
 function StudentUpdateForm({student}) {
@@ -15,6 +17,7 @@ function StudentUpdateForm({student}) {
     const [skill, setSkill] = useState(student.skill);
     const [pic, setPic] = useState(student.pic);
     const [anyChanges, setAnyChanges] = useState(false); // by default - no changes
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setAnyChanges(true);
@@ -41,6 +44,24 @@ function StudentUpdateForm({student}) {
                 setPic(e.target.value);
                 break;
         }
+    }
+
+    const handleSubmit = () => {
+
+        // loading state
+        setLoading(true);
+
+        // set our target url
+
+        // what data are we passing to our backend?
+
+        // what http method are we using
+
+        // fetch
+            // success state
+            // error state
+            // set loading to false
+
     }
 
     return (
@@ -97,7 +118,15 @@ function StudentUpdateForm({student}) {
                 />
             </div>
             <div className="studentUpdateForm__submit">
-                <Button variant="contained" size="large" disabled={!anyChanges} >Update</Button>
+                <Button 
+                    variant="contained" 
+                    size="large" 
+                    disabled={!anyChanges}
+                    onClick={handleSubmit}
+                    endIcon={loading && <AiOutlineReload  className="studentUpdateForm__submitLoader-spinning"/>}
+                >
+                Update
+                </Button>
             </div>
         </div>
     );
