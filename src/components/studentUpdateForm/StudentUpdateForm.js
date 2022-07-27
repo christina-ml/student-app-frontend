@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 
 import {AiOutlineReload } from 'react-icons/ai';
 
@@ -18,6 +20,7 @@ function StudentUpdateForm({student}) {
     const [pic, setPic] = useState(student.pic);
     const [anyChanges, setAnyChanges] = useState(false); // by default - no changes
     const [loading, setLoading] = useState(false);
+    const [showSnackbar, setShowSnackbar] = useState(false);
 
     const handleChange = (e) => {
         setAnyChanges(true);
@@ -52,20 +55,49 @@ function StudentUpdateForm({student}) {
         setLoading(true);
 
         // set our target url
+        const url = `https://student-app-backend-june.herokuapp.com/students/${student.id}`;
 
         // what data are we passing to our backend?
 
         // what http method are we using
 
+        // our data will be all of our hooks - all the things we want to send to our backend to update
+        let requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstname, lastname, company, city, skill, pic})
+        }
+
         // fetch
-            // success state
-            // error state
-            // set loading to false
+        fetch (url, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+
+                // success state
+                // error state
+
+                // set loading to false
+                setLoading(false);
+
+            }).catch(err => {
+                setLoading(false);
+                // let user know an error has occurred
+                setShowSnackbar(true); // show toast that update was unsuccessful
+            })
+
+        
 
     }
 
     return (
         <div className="studentUpdateForm">
+            <Snackbar 
+                open={showSnackbar} 
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                autoHideDuration={1500}
+                onClose={() => setShowSnackbar(false)}>
+                <Alert severity="error">An error occurred while updating — try again later.</Alert>
+            </Snackbar>
             <div className="studentUpdateForm__title">Update Student</div>
             <div className="studentUpdateForm__inputs">
                 <TextField 
