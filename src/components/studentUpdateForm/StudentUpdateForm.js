@@ -10,7 +10,7 @@ import {AiOutlineReload } from 'react-icons/ai';
 
 import './StudentUpdateForm.scss';
 
-function StudentUpdateForm({student}) {
+function StudentUpdateForm({student, setStudent}) {
 
     const [firstname, setFirstname] = useState(student.firstname);
     const [lastname, setLastname] = useState(student.lastname);
@@ -78,6 +78,7 @@ function StudentUpdateForm({student}) {
         .then(data => {
 
             // success state
+            setStudent(data);
             setAnyChanges(false);
             setSuccessfulUpdate(true);
             setShowSnackbar(true);
@@ -99,7 +100,7 @@ function StudentUpdateForm({student}) {
     }
 
     const errorElement = <Alert severity="error">An error occurred while updating — try again later.</Alert>
-    const successElement = <Alert>Student was updated successfully</Alert>
+    const successElement = <Alert severity="success">Student was updated successfully</Alert>
 
     return (
         <div className="studentUpdateForm">
@@ -109,7 +110,7 @@ function StudentUpdateForm({student}) {
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 autoHideDuration={1500}
                 onClose={() => setShowSnackbar(false)}>
-                   {successfulUpdate ? successElement : errorElement}
+                   { successfulUpdate ? successElement : errorElement }
             </Snackbar>
 
             <div className="studentUpdateForm__title">Update Student</div>

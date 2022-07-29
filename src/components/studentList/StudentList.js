@@ -34,8 +34,8 @@ const StudentList = (props) => {
             setShowSnackbar(true);
          }
 
-        const url = 'https://student-app-backend-june.herokuapp.com/students';
-        // const url = 'https://student-app-backend-cl.herokuapp.com/students';
+        // const url = 'https://student-app-backend-june.herokuapp.com/students';
+        const url = 'https://student-app-backend-cl.herokuapp.com/students';
         // reach out to the backend
         fetch(url)
         .then(response => response.json())
