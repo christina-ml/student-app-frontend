@@ -6,7 +6,10 @@ function Home() {
 
     return (
         <div className="home">
-            <NavigationButton buttonText={'Add New Student'} />
+            <NavigationButton 
+                buttonText={'Add New Student'} 
+                url={'/students/new'} 
+            />
             <StudentList />
         </div>
     );

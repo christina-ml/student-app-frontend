@@ -8,9 +8,9 @@ import Snackbar from '@mui/material/Snackbar';
 
 import {AiOutlineReload } from 'react-icons/ai';
 
-import './StudentUpdateForm.scss';
+import './StudentForm.scss';
 
-function StudentUpdateForm({student, setStudent}) {
+function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
 
     const [firstname, setFirstname] = useState(student.firstname);
     const [lastname, setLastname] = useState(student.lastname);
@@ -66,8 +66,9 @@ function StudentUpdateForm({student, setStudent}) {
         // what data are we passing to our backend?
         // what http method are we using
 
+        // when key & value are the same method: method can be just one word (shorthand)
         const requestOptions = {
-            method: 'PUT',
+            method,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ firstname, lastname, company, city, skill, pic })
         };
@@ -103,7 +104,7 @@ function StudentUpdateForm({student, setStudent}) {
     const successElement = <Alert severity="success">Student was updated successfully</Alert>
 
     return (
-        <div className="studentUpdateForm">
+        <div className="studentForm">
              
              <Snackbar 
                 open={showSnackbar} 
@@ -113,8 +114,8 @@ function StudentUpdateForm({student, setStudent}) {
                    { successfulUpdate ? successElement : errorElement }
             </Snackbar>
 
-            <div className="studentUpdateForm__title">Update Student</div>
-            <div className="studentUpdateForm__inputs">
+            <div className="studentForm__title">{title}</div>
+            <div className="studentForm__inputs">
                 <TextField 
                     id="outlined-basic" 
                     label="First Name" 
@@ -164,19 +165,19 @@ function StudentUpdateForm({student, setStudent}) {
                     onChange={(e) => handleChange(e)}
                 />
             </div>
-            <div className="studentUpdateForm__submit">
+            <div className="studentForm__submit">
                 <Button 
                     variant="contained" 
                     size="large" 
                     disabled={!anyChanges}
                     onClick={handleSubmit}
-                    endIcon={loading && <AiOutlineReload className="studentUpdateForm__submitLoader-spinning"/>}
+                    endIcon={loading && <AiOutlineReload className="studentForm__submitLoader-spinning"/>}
                 >
-                    Update
+                    {title}
                 </Button>
             </div>
         </div>
     );
 }
 
-export default StudentUpdateForm;
+export default StudentForm;

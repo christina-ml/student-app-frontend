@@ -13,6 +13,7 @@ import StudentDetailPage from './pages/StudentDetailPage';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
+import AddStudentPage from './pages/AddStudentPage';
 
 import './App.scss';
 
@@ -39,6 +40,7 @@ function App() {
           <div className="pageContainer">
             <Routes>
                 <Route path="/students/:studentId" element={<StudentDetailPage />} />
+                <Route path="/students/new" element={<AddStudentPage />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/" element={<Home />} /> 

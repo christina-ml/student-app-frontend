@@ -5,10 +5,10 @@ import Button from '@mui/material/Button';
 
 import './NavigationButton.scss';
 
-function NavigationButton({buttonText}) {
+function NavigationButton({buttonText, url}) {
     return (
         <div className="navigationButton">
-            <Link to="/students/new">
+            <Link to={url}>
                 <Button
                     variant="contained" 
                     size="large" 
