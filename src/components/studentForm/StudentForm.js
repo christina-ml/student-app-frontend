@@ -100,7 +100,10 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
 
     }
 
-    const errorElement = <Alert severity="error">An error occurred while updating — try again later.</Alert>
+    // if method is 'PUT' we are updating/adding student, if its 'POST' we are creating/adding student
+    const action = method === 'PUT' ? 'updating student' : 'adding student';
+
+    const errorElement = <Alert severity="error">An error occurred while {action} — please try again later.</Alert>
     const successElement = <Alert severity="success">Student was updated successfully</Alert>
 
     return (
