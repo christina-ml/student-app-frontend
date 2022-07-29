@@ -2,10 +2,10 @@ import React from 'react';
 
 import StudentForm from '../components/studentForm/StudentForm';
 
-function AddStudentPage() {
+function AddStudentPage(props) {
     return (
         <div>
-            <StudentForm title="Add" method="POST"/>
+           <StudentForm title="Add" method="POST" />
         </div>
     );
 }

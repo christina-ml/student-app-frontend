@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 
-
 import {AiOutlineReload } from 'react-icons/ai';
 
 import './StudentForm.scss';
@@ -13,11 +12,11 @@ import './StudentForm.scss';
 function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
 
     const [firstname, setFirstname] = useState(student.firstname);
-    const [lastname, setLastname] = useState(student.lastname);
+    const [lastname, setLastname] = useState(student.lastname );
     const [company, setCompany] = useState(student.company);
     const [city, setCity] = useState(student.city);
     const [skill, setSkill] = useState(student.skill);
-    const [pic, setPic] = useState(student.pic);
+    const [pic, setPic] = useState(student.pic  );
     const [anyChanges, setAnyChanges] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showSnackbar, setShowSnackbar] = useState(false);
@@ -66,7 +65,6 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
         // what data are we passing to our backend?
         // what http method are we using
 
-        // when key & value are the same method: method can be just one word (shorthand)
         const requestOptions = {
             method,
             headers: { 'Content-Type': 'application/json' },
@@ -75,36 +73,36 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
 
         // fetch
         fetch(url, requestOptions)
-        .then(response => response.json())
-        .then(data => {
+            .then(response => response.json())
+            .then(data => {
 
-            // success state
-            setStudent(data);
-            setAnyChanges(false);
-            setSuccessfulUpdate(true);
-            setShowSnackbar(true);
-            
-            // error state
-            //TODO
+                // success state
+                setStudent(data);
+                setAnyChanges(false);
+                setSuccessfulUpdate(true);
+                setShowSnackbar(true);    
+                
+                // error state
+                //TODO
 
-            // set loading to false 
-            setLoading(false);
+                // set loading to false 
+                setLoading(false);
 
-        }).catch(err => {
-            setLoading(false);
-            // let user know an error has occurred 
-            setSuccessfulUpdate(false);
-            setShowSnackbar(true);
-        });
+            }).catch(err => {
+                setLoading(false);
+                // let user know an error has occurred 
+                setSuccessfulUpdate(false);
+                setShowSnackbar(true);
+            });
         
 
     }
 
-    // if method is 'PUT' we are updating/adding student, if its 'POST' we are creating/adding student
-    const action = method === 'PUT' ? 'updating student' : 'adding student';
 
-    const errorElement = <Alert severity="error">An error occurred while {action} — please try again later.</Alert>
-    const successElement = <Alert severity="success">Student was updated successfully</Alert>
+    const action = method === 'PUT' ? 'updating student' : 'adding student';
+    const errorElement =  <Alert severity="error">An error occurred while {action} — please try again later.</Alert>
+    const successElement =  <Alert>Student was updated successfully!</Alert>
+
 
     return (
         <div className="studentForm">
@@ -114,10 +112,10 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 autoHideDuration={1500}
                 onClose={() => setShowSnackbar(false)}>
-                   { successfulUpdate ? successElement : errorElement }
+                    {successfulUpdate ?  successElement : errorElement}
             </Snackbar>
 
-            <div className="studentForm__title">{title}</div>
+            <div className="studentForm__title">{title} Student</div>
             <div className="studentForm__inputs">
                 <TextField 
                     id="outlined-basic" 
@@ -126,7 +124,7 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
                     value={firstname}
                     name='firstname'
                     onChange={(e) => handleChange(e)}
-                     />
+                />
                 <TextField 
                     id="outlined-basic" 
                     label="Last Name" 

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function About() {
+function About(props) {
     return (
         <div>
-            About this amazing Student Management App!
+            About this amazing Student Management app! 
         </div>
     );
 }

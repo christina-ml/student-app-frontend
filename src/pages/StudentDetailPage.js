@@ -1,5 +1,3 @@
-
-
 import React, {useEffect, useState} from 'react';
 import {useParams, useLocation} from "react-router-dom";
 
@@ -22,7 +20,7 @@ function StudentDetailPage(props) {
             // const singleStudentURL =`https://student-app-backend-june.herokuapp.com/students/${studentId}`; <= Jordan's backend url
             const singleStudentURL =`https://student-app-backend-cl.herokuapp.com/students/${studentId}`;
 
-              fetch(singleStudentURL)
+            fetch(singleStudentURL)
                 .then(response => response.json())
                 .then(data => {
                     setStudent(data);

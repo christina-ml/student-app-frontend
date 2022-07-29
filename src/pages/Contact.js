@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Contact() {
+function Contact(props) {
     return (
         <div>
-            Reach out at scholasticstudies@gmail.com
+           Reach out at scholasticstudies@gmail.com 
         </div>
     );
 }
