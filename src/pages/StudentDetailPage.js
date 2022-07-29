@@ -33,17 +33,6 @@ function StudentDetailPage(props) {
     
     const studentId = params.studentId;
 
-    // with the student Id, we can fetch student info
-    // from our API
-
-    // update student 
-    // create update componentn
-    // with form for all fields
-    // on submit, show loader
-    // on success show toast 
-    // on fail show toast (error)s
-    // update data on student page
-
     return (
         <div className="studentDetailPage">
            {Object.keys(student).length > 0 && <StudentCard student={student} showDelete />}
