@@ -21,6 +21,7 @@ function StudentUpdateForm({student}) {
     const [anyChanges, setAnyChanges] = useState(false);
     const [loading, setLoading] = useState(false);
     const [showSnackbar, setShowSnackbar] = useState(false);
+    const [successfulUpdate, setSuccessfulUpdate] = useState(false);
 
 
     const handleChange = (e) => {
@@ -59,7 +60,8 @@ function StudentUpdateForm({student}) {
 
         // set our target url 
 
-        const url = `https://student-app-backend-june.herokuapp.com/students/${student.id}`;
+        // const url = `https://student-app-backend-june.herokuapp.com/students/${student.id}`;
+        const url = `https://student-app-backend-cl.herokuapp.com/students/${student.id}`;
 
         // what data are we passing to our backend?
         // what http method are we using
@@ -76,10 +78,9 @@ function StudentUpdateForm({student}) {
         .then(data => {
 
             // success state
-            console.log(data);
             setAnyChanges(false);
-            // show success toast
-            //TODO
+            setSuccessfulUpdate(true);
+            setShowSnackbar(true);
             
             // error state
             //TODO
@@ -87,15 +88,18 @@ function StudentUpdateForm({student}) {
             // set loading to false 
             setLoading(false);
 
-
         }).catch(err => {
             setLoading(false);
             // let user know an error has occurred 
+            setSuccessfulUpdate(false);
             setShowSnackbar(true);
         });
         
 
     }
+
+    const errorElement = <Alert severity="error">An error occurred while updating — try again later.</Alert>
+    const successElement = <Alert>Student was updated successfully</Alert>
 
     return (
         <div className="studentUpdateForm">
@@ -105,7 +109,7 @@ function StudentUpdateForm({student}) {
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 autoHideDuration={1500}
                 onClose={() => setShowSnackbar(false)}>
-                <Alert severity="error">An error occurred while updating — try again later.</Alert>
+                   {successfulUpdate ? successElement : errorElement}
             </Snackbar>
 
             <div className="studentUpdateForm__title">Update Student</div>
