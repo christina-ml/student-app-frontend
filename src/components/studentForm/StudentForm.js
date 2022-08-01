@@ -111,7 +111,6 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
                 setShowSnackbar(true);
             });
         
-
     }
 
 
