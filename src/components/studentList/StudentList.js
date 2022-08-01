@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useLocation } from "react-router-dom";
 
 
-
+// import SearchBar from '../searchBar/SearchBar';
 import SingleTextInput from '../singleTextInput/SingleTextInput';
 import StudentCard from '../studentCard/StudentCard';
 import EmptyView from '../emptyView/EmptyView';
@@ -55,7 +55,7 @@ const StudentList = (props) => {
 
     if(searchTerm){
         filteredStudents = students.filter(student => {
-            const fullName = `${student.firstName} ${student.lastName}`;
+            const fullName = `${student.firstname} ${student.lastname}`;
             
             const fullNameToLowerCase = fullName.toLowerCase();
 
