@@ -1,3 +1,5 @@
+@import '../../designUtils/colors';
+
 .navigationButton {
     display: flex;
     justify-content: end;
@@ -6,5 +8,11 @@
 
     a {
         text-decoration: none;
+    }
+
+    // media query for mobile
+    @media only screen and (max-width: 440px) {
+        width: auto;
+        margin: 0 10px 10px 0;
     }
 }
