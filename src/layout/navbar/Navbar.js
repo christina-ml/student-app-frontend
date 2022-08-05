@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from "react-router-dom";
-
 
 import './Navbar.scss';
 
@@ -9,6 +8,14 @@ function Navbar() {
     let navigate = useNavigate();
 
     const [showNavbarItems, setShowNavbarItems] = useState(false);
+
+    useEffect(() => {
+        if (showNavbarItems){
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [showNavbarItems]);
 
     const toggleMenuItems = () => {
         // set to the opposite of whatever it currently is, so that it changes the className
@@ -24,6 +31,12 @@ function Navbar() {
 
     return (
         <div className="navbar">
+            <div 
+                className="navbar__overlay" 
+                style={{"display" : showNavbarItems ? "block" : "none"}}
+                onClick={() => setShowNavbarItems(false)}
+            >
+            </div>
             <div className="navbar__links">
                 <div 
                     className="navbar__logo"
