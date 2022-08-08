@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -8,7 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 
 import {AiOutlineReload } from 'react-icons/ai';
 
-import {isValidEmail} from '../utils/EmailValidation';
+import {isValidEmail} from '../../utils/EmailValidation';
 
 import './StudentForm.scss';
 
@@ -18,10 +18,10 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
 
     const [firstname, setFirstname] = useState(student.firstname);
     const [lastname, setLastname] = useState(student.lastname );
-    const [company, setCompany] = useState(student.company);
     const [email, setEmail] = useState(student.email);
-    const [emailError, setEmailError] = useState(true);
-    const [emailHelperText, setEmailHelperText]= useState('');
+    const [emailError, setEmailError] = useState(false);
+    const [emailHelperText, setEmailHelperText] = useState('');
+    const [company, setCompany] = useState(student.company);
     const [city, setCity] = useState(student.city);
     const [skill, setSkill] = useState(student.skill);
     const [pic, setPic] = useState(student.pic  );
@@ -63,30 +63,29 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
 
     }
 
-
-
     const handleSubmit = () => {
+        
 
-        // validate email
-        if (!isValidEmail(email)){
-            // console.log('bad email!')
+        if(!isValidEmail(email)){
             setEmailError(true);
-            setEmailHelperText("Invalid Email")
+            setEmailHelperText("Invalid Email.")
             return;
         } else {
             setEmailError(false);
-            setEmailHelperText('');
+            setEmailHelperText("")
         }
-        
+
         // loading state
         setLoading(true);
 
         // set our target url 
 
+
         // let url = `https://student-app-backend-june.herokuapp.com/students/${student.id}`;
         let url = `https://student-app-backend-cl.herokuapp.com/students`;
 
-        if (method === 'PUT'){
+ 
+        if(method === 'PUT'){
             url += `/${student.id}`
         }
 
@@ -104,24 +103,20 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
             .then(response => response.json())
             .then(data => {
 
-                if (method==='POST'){ // we are adding a new user
-                    console.log('student added!');
-
-                    // redirect to new student detail page
+                if(method==='POST') { // we are adding a new student
+                    
+                    // redirect to new studetn detail page
                     navigate(`/students/${data.id}`, { 
                         state: {
-                            fromCreateStudent: true,
+                            fromCreateStudent: true, 
                             studentName: `${data.firstname} ${data.lastname}`
                         }
                     });
-                        // on that page show toast for success
-
-                } else { // updating student
-                    // success state
+                } else  { // updating student 
                     setStudent(data);
                     setAnyChanges(false);
                     setSuccessfulUpdate(true);
-                    setShowSnackbar(true);
+                    setShowSnackbar(true);    
                     setLoading(false);
                 }
 
@@ -132,6 +127,7 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
                 setShowSnackbar(true);
             });
         
+
     }
 
 
@@ -169,12 +165,12 @@ function StudentForm({student={}, setStudent, title="Update", method="PUT"}) {
                     name='lastname'
                     onChange={(e) => handleChange(e)} 
                 />
-                <TextField 
+                 <TextField 
                     id="outlined-basic" 
                     label="Email" 
                     variant="outlined" 
-                    value={email} 
-                    name="email"
+                    value={email}
+                    name='email'
                     error={emailError}
                     helperText={emailHelperText}
                     onChange={(e) => handleChange(e)} 
